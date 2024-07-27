@@ -1,0 +1,8 @@
+ul li a.active {
+  color: #b19c5b !important;
+  background-color: white;
+}
+
+.sidebar {
+  scrollbar-width: none !important;
+}
