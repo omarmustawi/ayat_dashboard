@@ -95,15 +95,17 @@ function OtherAccounts() {
         <Col sm={3} className="flex items-center">
           <component.Data name="نوع الحساب" />
           <component.MultipleSelect
-            options={[{name: "موظفين", id: "1"}, {name: "مدير", id: "2"}]}
+            options={[{name: "طلاب", id: "student"}, {name: "مدير", id: "admin"}]}
             placeholder="نوع الحساب"
             className="sm:w-[130px]"
+            onChange={(e) => handleSelectChange("account_type", e.value)} 
           />
         </Col>
         <Col sm={2} className="flex items-center">
           <component.MainButton
             name="بحث"
             className="!py-[0.4rem] !px-6 !rounded-md"
+            onClick={handleSearch}
           />
         </Col>
       </Row>

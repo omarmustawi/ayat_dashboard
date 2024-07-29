@@ -19,6 +19,7 @@ function Awarded() {
         const response = await axios.get(`${API}/ischolarships/`);
         setDataAll(response.data);
         setFilteredData(response.data);
+        console.log(response);
       } catch (errors) {
         console.error("error", errors);
         setError("Reload the page.");

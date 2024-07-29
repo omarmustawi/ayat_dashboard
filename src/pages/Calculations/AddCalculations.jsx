@@ -19,9 +19,10 @@ function AddCalculations() {
     if (id !== "add") {
       const fetchEmployee = async () => {
         try {
-          const response = await axios.get(`${API}/evaluators/${id}/`);
-          // const response = await axios.get(`${API}/users/${id}/`);
+          // const response = await axios.get(`${API}/evaluators/${id}/`);
+          const response = await axios.get(`${API}/users/${id}/`);
           setFormData(response.data);
+          // console.log(response);
         } catch (err) {
           console.error("Error fetching employee data:", err);
         }
@@ -56,13 +57,16 @@ function AddCalculations() {
     }
 
     try {
+      console.log('formData.account_type: ', formData.account_type);
       if (id === "add") {
-        if (formData.account_type) {
-          await axios.post(`${API}/users/`, formData);
-        } else {
+        if (formData.account_type === "admin" ) {
           await axios.post(`${API}/evaluators/`, formData);
+        } else {
+          await axios.post(`${API}/users/`, formData);
         }
+        // await axios.post(`${API}/evaluators/`, formData);
       } else {
+        // await axios.put(`${API}/evaluators/${id}/`, formData);
         await axios.put(`${API}/users/${id}/`, formData);
       }
 
@@ -85,8 +89,8 @@ function AddCalculations() {
       name: "dd",
       text: "نوع الحساب",
       options: [
-        { name: "مدير", id: "1" },
-        { name: "موظف", id: "0" },
+        { name: "مدير", id: "admin" },
+        { name: "طالب", id: "student" },
       ],
     },
   ];
@@ -128,9 +132,9 @@ function AddCalculations() {
                       isEmployee === "false" && e.text === "المركز" && "hidden"
                     }`}
                     onChange={(e) => {
-                      handleSelectChange(e.name, e.value);
+                      // handleSelectChange(e.name, e.value);
                       // setFormData(e.value);
-                      // handleSelectChange("account_type", e.value);
+                      handleSelectChange("account_type", e.value);
                     }}
                   />
                 </Col>
